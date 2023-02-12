@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Section from '../Section';
 import FeedbackOptions from '../FeedbackOptions';
 import Statistics from '../Statistics';
 import Notification from '../Notification';
 
 
-export const App = (()=>{
+export const App = ()=>{
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
@@ -13,19 +13,6 @@ export const App = (()=>{
 
   const feedback = { good, neutral, bad };
   const options = Object.keys(feedback);
-
-
-  const countTotalFeedback = () => {
-    return good + bad + neutral;
-  };
-
-
-  const countPositiveFeedbackPercentage = () => {
-    return countTotalFeedback() >= 1
-      ? Math.round((good / countTotalFeedback()) * 100)
-      : 0;
-  };
-  
 
   const onLeaveFeedback = type => {
     switch (type) {
@@ -45,6 +32,19 @@ export const App = (()=>{
         console.log('Invalid feedback type');
     }
   };
+
+
+  const countTotalFeedback = () => {
+    return good + bad + neutral;
+  };
+
+
+  const countPositiveFeedbackPercentage = () => {
+    return countTotalFeedback() >= 1
+      ? Math.round((good / countTotalFeedback()) * 100)
+      : 0;
+  };
+
 
 
 
@@ -71,17 +71,7 @@ export const App = (()=>{
       </Section>
     </>
   );
-})
-// class App extends Component {
-//   state = {
-//     good: 0,
-//     neutral: 0,
-//     bad: 0,
-//   };
-  // countTotalFeedback = () => {
-  //   const { good, neutral, bad } = this.state;
-  //   return good + bad + neutral;
-  // };
+}
 
 
 
